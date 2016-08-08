@@ -3,16 +3,16 @@
 
 library(raster)
 
-path='/scratch/glacio1/cw14910/synthetic_channels_SCRATCH/separate-channels'
-#maskF=capture.output( cat(path, "/mask_correct_BamberPstere_100m_GRIGGS_dims.tif", sep=''))
-maskF=capture.output( cat(path, "/mask_correct_BamberPstere_5000m_GRIGGS_dims.tif", sep=''))
+path='/scratch/glacio1/cw14910/synthetic_channels_SCRATCH/separate-channels' # also see O:/..
+maskF=capture.output( cat(path, "/mask_correct_BamberPstere_100m_GRIGGS_dims.tif", sep=''))
+#maskF=capture.output( cat(path, "/mask_correct_BamberPstere_5000m_GRIGGS_dims.tif", sep=''))
 mask=raster(maskF)
 
 ## amend raster values to 1/0 (land or ice or ice shelf VS. ocean)
 ## 0 = ocean | 1 = land | 2 = ice | 3 = ice shelf
-mask[mask==2]=1
-mask[mask==3]=1
-
+mask[round(mask)==2]=1
+mask[round(mask)==3]=1
+mask=round(mask)
 
 ## Define the function
 gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile', pypath=NULL, readpoly=TRUE, quiet=TRUE) {
@@ -95,6 +95,6 @@ polygonizer <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile', pypath=
 ## create polygons 
 #system.time(p <- gdal_polygonizeR(mask))
 
-outshape=capture.output(cat(path, "/Greenland_mask_outline.shp", sep=''))
+outshape=capture.output(cat("/home/cw14910/Github/Greenland_outline/Greenland_mask_outline_100m.shp", sep=''))
 #system.time(p <- gdal_polygonizeR(mask, outshape=outshape))
 gdal_polygonizeR(mask, outshape=outshape)
