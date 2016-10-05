@@ -1,4 +1,4 @@
-# Create a polygon mask
+# Create a polygon mask from raster data
 
 Takes in a raster dataset, changes the values to make it binary (i.e. 1/0) and then out pops a shapefile which adopts the values of the input raster.
 
