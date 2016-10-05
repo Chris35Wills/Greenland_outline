@@ -49,6 +49,7 @@ gdal_polygonizeR <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile', py
 	  return(NULL)
 }
 
+# This function may work for windows but you'll need to check the hardwired paths
 polygonizer <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile', pypath=NULL, readpoly=TRUE, quietish=TRUE) {
   # x: an R Raster layer, or the file path to a raster file recognised by GDAL
   # outshape: the path to the output shapefile (if NULL, a temporary file will be created)
