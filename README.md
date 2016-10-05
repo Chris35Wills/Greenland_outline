@@ -1,8 +1,10 @@
 # Create a polygon mask from raster data (using R)
 
-Takes in a raster dataset, changes the values to make it binary (i.e. 1/0) and then out pops a shapefile which adopts the values of the input raster.
+Takes in a raster dataset, changes the values to make it binary (i.e. 1/0) and then out pops a shapefile which adopts the values of the input raster. Works on linux although not tested extensively.
 
-So if we have a raster with some values (say 0, 1 and 2 perhaps representing iocean, land and ice) like this:
+## How it works
+
+If we have a raster with some values (say 0, 1 and 2 perhaps representing iocean, land and ice) like this:
 
 <img src="./img/ras_screenshot.png" width="700px" />
 
@@ -16,8 +18,10 @@ For immediate use, a 100m resolution vector outline is available in ./shp
 
 However, the code framework should work for any mask, just change the path and the values which you need to alter to make it 1/0.
 
+## Other info
+
 The code is taken largely from this post: [https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/](https://johnbaumgartner.wordpress.com/2012/07/26/getting-rasters-into-shape-from-r/)
 
-If running on windows, try using the polygonizer function as opposed to gdal_polygonizeR.
+Linking the R and python libraries on windows is less easily implemented. So, if running on windows, have a look at create_greenland_outline_polygon_DIRTY.r and try using the polygonizer function as opposed to gdal_polygonizeR.
 
-Also, this will only work if you have [gdal](http://www.gdal.org/) downloaded locally!
+Also, this will only work if you have [gdal](http://www.gdal.org/) downloaded locally - if using anaconda python, just type ```conda install gdal```.
