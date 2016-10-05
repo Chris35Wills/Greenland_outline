@@ -5,7 +5,11 @@ library(raster)
 
 #path='/scratch/glacio1/cw14910/synthetic_channels_SCRATCH/separate-channels' # also see O:/..
 #maskF=capture.output( cat(path, "/mask_correct_BamberPstere_100m_GRIGGS_dims.tif", sep=''))
-path='./raster' 
+
+# hardwire the data input and output paths here (don;t use ./ or ../ as the working directory is changed later on)
+path='/home/cw14910/Github/Greenland_outline/raster' 
+opath='/home/cw14910/Github/Greenland_outline/shp'
+
 maskF=capture.output( cat(path, "/mask_correct_BamberPstere_5000m_GRIGGS_dims.tif", sep=''))
 mask=raster(maskF)
 
@@ -97,7 +101,7 @@ polygonizer <- function(x, outshape=NULL, gdalformat = 'ESRI Shapefile', pypath=
 ## create polygons 
 #system.time(p <- gdal_polygonizeR(mask))
 
-#outshape=capture.output(cat("/home/cw14910/Github/Greenland_outline/Greenland_mask_outline_100m.shp", sep=''))
-outshape=capture.output(cat("./shp/Greenland_mask_outline_5000m.shp", sep=''))
+#outshape=capture.output(cat(opath, "/Greenland_mask_outline_100m.shp", sep=''))
+outshape=capture.output(cat(opath, "/Greenland_mask_outline_5000m_TEST.shp", sep=''))
 #system.time(p <- gdal_polygonizeR(mask, outshape=outshape))
 gdal_polygonizeR(mask, outshape=outshape)
